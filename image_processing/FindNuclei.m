@@ -1,13 +1,13 @@
 close all; beep off;
-addpath('~/embryo_algo/')
+addpath('your folder containing this *.m files')
 
-DataFolder = '/media/platte1/embryo_algo/data/';
+DataFolder = 'Folder containing the *.tif data files';
 % rawfilenames={
 % '246_interphase_2sec',  '455_combined',  '456_interphase',  '458_combined',    '620_interphase', '454_combined',	 '456_combined',  '457_combined',    '599_interphase',  '622_time'
 % }; % NOTE: no extension (.tif) needed for rawfilenames.
 
 rawfilenames={
-    '454_combined'
+'Comma separated list of *.tif files to work on. Have to be in $DataFolder'
     }
 for rawfileInd=1:length(rawfilenames)
 rawfilename = rawfilenames{rawfileInd};
@@ -20,6 +20,7 @@ disp(['filename: ' afilename]);
 
 
 fileInfo=imfinfo(afilename,'tif');
+%include your filename here to cut off timestamps etc before computing
 switch rawfilename
     case 'd28'
         [XXX YYY]=ndgrid(1:fileInfo(1).Height,1:fileInfo(1).Width); repaintIndices=find(15*XXX<(YYY-1235)*40); clear XXX YYY;
@@ -54,7 +55,6 @@ switch rawfilename
     otherwise
         repaintValue = -1;
 end
-repaintValue=8989;
 
 FigNums = [1 2 3 100 5 6 100];
 %close(FigNums);
