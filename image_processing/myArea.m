@@ -1,0 +1,39 @@
+orig1=imread('data/Lutz/area1.tif');
+%tmp1=imadjust(tmp1);
+tmp1=wiener2(orig1);
+tmp1=imadjust(tmp1);
+bw1=im2bw(tmp1,1.5*graythresh(tmp1));
+bw1=bwareaopen(bw1,200);
+bw1=~bwareaopen(~bw1,200);
+image1=bw1;
+area=bwarea(image1);
+[y x]=find(image1);
+[k v]=convhull(x,y);
+relate1=area/v
+orig2=imread('data/Lutz/area2.tif');
+%tmp1=imadjust(tmp1);
+tmp2=wiener2(orig2);
+tmp2=imadjust(tmp2);
+bw2=im2bw(tmp2,1.5*graythresh(tmp1));
+bw2=bwareaopen(bw2,200);
+bw2=~bwareaopen(~bw2,200);
+image2=bw2;
+area=bwarea(image2);
+[y x]=find(image2);
+[k v]=convhull(x,y);
+relate2=area/v
+orig3=imread('data/Lutz/area3.tif');
+%tmp1=imadjust(tmp1);
+tmp3=wiener2(orig3);
+tmp3=imadjust(tmp3);
+bw3=im2bw(tmp3,1.5*graythresh(tmp1));
+bw3=bwareaopen(bw3,200);
+bw3=~bwareaopen(~bw3,200);
+image3=bw3;
+area=bwarea(image3);
+[y x]=find(image3);
+[k v]=convhull(x,y);
+relate1=area/v
+imwrite(bw1,'data/Lutz/area1_pre.tif');
+imwrite(bw2,'data/Lutz/area2_pre.tif');
+imwrite(bw3,'data/Lutz/area3_pre.tif');
